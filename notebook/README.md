@@ -15,6 +15,8 @@
 
 如果只想重新评估已有 checkpoint，打开 `EVALUATE_RESULTS.ipynb`，先运行 setup cell，再运行 Chronos / TimesFM eval cell。它会写入 `output/notebook_eval_时间戳/`。
 
+注意：`EVALUATE_RESULTS.ipynb` 只适合本地已经跑出或手动准备好 `output/*_repro_*` checkpoint 的场景。新 clone 的仓库没有 `output/` 结果，不能直接使用 eval notebook；需要先运行 `REPRODUCE_RESULTS.ipynb` 生成对应 checkpoint，或自行放入同名输出目录。
+
 ## 基模权重
 
 基座模型权重不保存在本仓库。
@@ -28,7 +30,7 @@
 
 ## 数据文件
 
-数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。实验默认读取 `data/extracted/` 下的 Monash `.tsf` 文件，例如：
+数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。实际数据文件不随仓库提交；clone 后需要自行从该网站下载并解压到 `data/extracted/`。实验默认读取 `data/extracted/` 下的 Monash `.tsf` 文件，例如：
 
 - `data/extracted/tourism_monthly_dataset.tsf`
 - `data/extracted/m4_monthly_dataset.tsf`

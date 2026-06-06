@@ -42,7 +42,7 @@ cd ~/ML/project
 
 ## 数据规则
 
-数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。当前本地只保留 17 个 Monash 数据集。不要按旧文档假设存在全量 58 个数据集。
+数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。实际数据文件不提交到 Git；clone 后需要用户自行下载并解压到 `data/extracted/`。当前本地只保留 17 个 Monash 数据集。不要按旧文档假设存在全量 58 个数据集。
 
 - 下游评估固定使用 `data/extracted/tourism_monthly_dataset.tsf`。
 - TimesFM head pretrain / staged pretrain 额外使用 [data/DATASETS.md](data/DATASETS.md) 列出的数据池。
@@ -64,6 +64,7 @@ Chronos 会复用 `data/arrow_training/<dataset>/` 下的 Arrow 文件；如果 
 
 - `output/` 是本地 checkpoint、metrics、图和复现结果，可以保留在本地，不作为主要交付。
 - 不要主动删除 `output/`，除非用户明确要求。
+- `notebook/EVALUATE_RESULTS.ipynb` 依赖本地已有 `output/*_repro_*` checkpoint；新 clone 的仓库不能直接跑 eval notebook，必须先跑复现或手动准备 checkpoint。
 - 可以清理 `__pycache__/`、`.ipynb_checkpoints/` 和 notebook 临时输出。
 - 修改 notebook 后应清空执行输出，保持文件轻量。
 

@@ -23,13 +23,13 @@ jupyter notebook notebook/REPRODUCE_RESULTS.ipynb
 
 Notebook 会把新结果写到 `output/notebook_repro_时间戳/`。TimesFM 的 direct / LoRA 实验依赖同一次 notebook 运行中先生成的 pretrain checkpoint，不会自动回退旧的 `output/` 目录。
 
-如果只想加载已有 checkpoint 重新评估并展示预测图，使用 [notebook/EVALUATE_RESULTS.ipynb](notebook/EVALUATE_RESULTS.ipynb)。它不运行 pretrain 或 fine-tune，只写入 `output/notebook_eval_时间戳/`。
+如果只想加载已有 checkpoint 重新评估并展示预测图，使用 [notebook/EVALUATE_RESULTS.ipynb](notebook/EVALUATE_RESULTS.ipynb)。它不运行 pretrain 或 fine-tune，只写入 `output/notebook_eval_时间戳/`。这个 notebook 仅适用于本地已经有对应 `output/*_repro_*` checkpoint 的情况；新 clone 的仓库需要先运行复现实验生成 output，或自行放入同名 checkpoint 目录。
 
 更详细的 notebook 用法见 [notebook/README.md](notebook/README.md)。
 
 ## 数据与模型权重
 
-数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。当前只保留复现实验需要的 17 个 Monash `.tsf` 数据集，详见 [data/DATASETS.md](data/DATASETS.md)。下游评估固定使用 `tourism_monthly_dataset.tsf`。
+数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。仓库不提交实际数据文件；clone 后需要自行从该网站下载需要的 `.tsf` 数据并放到 `data/extracted/`。当前本地只保留复现实验需要的 17 个 Monash `.tsf` 数据集清单，详见 [data/DATASETS.md](data/DATASETS.md)。下游评估固定使用 `tourism_monthly_dataset.tsf`。
 
 Chronos 和 TimesFM 的基座模型权重不在仓库中：
 

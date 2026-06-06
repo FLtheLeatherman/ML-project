@@ -8,8 +8,8 @@
 通用注意事项：
 
 - 推荐使用 [notebook/REPRODUCE_RESULTS.ipynb](../notebook/REPRODUCE_RESULTS.ipynb) 复现当前结果。
-- 如果只需要加载已有 checkpoint 做 eval 和预测展示，使用 [notebook/EVALUATE_RESULTS.ipynb](../notebook/EVALUATE_RESULTS.ipynb)。
+- 如果只需要加载已有 checkpoint 做 eval 和预测展示，使用 [notebook/EVALUATE_RESULTS.ipynb](../notebook/EVALUATE_RESULTS.ipynb)。该 notebook 仅限本地已有 `output/*_repro_*` checkpoint 的情况；新 clone 后需要先跑复现实验生成 output。
 - 基座模型权重不在仓库中，Chronos 和 TimesFM 都依赖 Hugging Face cache 或联网下载。
-- 数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)，默认读取 `data/extracted/*.tsf`；缺数据时普通脚本一般会抛 `FileNotFoundError`。
+- 数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。实际数据不提交到仓库，clone 后需要自行下载并解压到 `data/extracted/`；缺数据时普通脚本一般会抛 `FileNotFoundError`。
 - Chronos 与 TimesFM 的 tourism_monthly 切分口径不同，不建议把两者数值做严格横向比较。
 - 当前保留的结果目录在 `output/` 下；notebook 会把新复现结果写入 `output/notebook_repro_时间戳/`。

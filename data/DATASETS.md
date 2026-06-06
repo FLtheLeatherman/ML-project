@@ -1,6 +1,6 @@
 # 当前保留数据集
 
-本项目数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。当前只保留复现实验需要的 Monash `.tsf` 数据。原始 zip 与解压后的 `.tsf` 文件一一对应：
+本项目数据来自 [Monash Time Series Forecasting Archive](https://forecastingdata.org/)。实际数据文件不提交到 Git；clone 后需要自行从该网站下载并解压。当前本地只保留复现实验需要的 Monash `.tsf` 数据。原始 zip 与解压后的 `.tsf` 文件一一对应：
 
 - zip: `data/<dataset>.zip`
 - tsf: `data/extracted/<dataset>.tsf`
