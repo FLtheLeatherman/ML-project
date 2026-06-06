@@ -1,0 +1,6 @@
+[submodule "chronos-forecasting"]
+	path = chronos-forecasting
+	url = https://github.com/amazon-science/chronos-forecasting.git
+[submodule "timesfm"]
+	path = timesfm
+	url = https://github.com/google-research/timesfm.git

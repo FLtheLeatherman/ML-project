@@ -1,0 +1,55 @@
+# Local datasets and generated experiment outputs
+/data/*
+!/data/DATASETS.md
+/output/
+/results/
+
+# Python caches and local virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# Jupyter local state
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Logs and runtime artifacts
+*.log
+*.out
+*.err
+*.pid
+
+# Model checkpoints and large training artifacts
+checkpoint-*/
+checkpoint-final/
+adapter_model.safetensors
+model.safetensors
+*.safetensors
+pytorch_model*.bin
+*.bin
+*.pt
+*.ckpt
+*.pth
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
