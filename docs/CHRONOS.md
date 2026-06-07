@@ -80,10 +80,10 @@ Chronos-T5 本质是分类模型：连续时间序列先经过 mean scaling 和�
 
 ## 讨论
 
-- Chronos 的原始 CE 目标仍然非常强，`CE+LoRA` 在 WQL 上最好。
-- 如果更看重点预测 MASE，`bin-W1+LoRA` 是当前最好结果。
+- Chronos 的结果不能解释为“加入 MSE 就会变好”。纯 `bin-MSE` 弱于 CE，`bin-MSE+CE` 也基本贴近纯 MSE。
+- 更关键的是选择一种适配 Chronos 离散输出、同时能表达 bin 间距离的 loss；`bin-W1+LoRA` 因此在 MASE 上最好。
+- CE 仍然很强，`CE+LoRA` 在 WQL 上最好；这说明概率预测校准和点预测误差之间存在明确 trade-off。
 - 如果希望概率预测和点预测都比较稳，`bin-CRPS+LoRA` 是当前最值得讨论的新损失。
-- `bin-MSE+CE` 的收益不明显，主要原因是 MSE 优化期望值，而 Chronos 推理仍基于自回归采样；二者目标没有完全对齐。
 - Huber、W2、OrdinalCE 都说明“分类模型上做分布式距离损失”是可行的，但当前 tourism_monthly 小规模设定下没有稳定超过 CE baseline。
 
 ## 复现入口

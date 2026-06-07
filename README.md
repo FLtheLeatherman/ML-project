@@ -1,4 +1,4 @@
-# Two Ways to Combine Numerical and Classification Objectives in Time-Series Foundation Models
+# Bridging the Gap Between Numerical and Categorical Objectives in Time-Series Foundation Models
 
 本项目是机器学习大作业：在时间序列预训练模型上改造损失函数，并比较 zero-shot、原始微调和改造损失微调的效果。
 

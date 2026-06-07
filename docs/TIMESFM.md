@@ -131,7 +131,7 @@ CE head 参数量：
 - CE256 direct 迁移强于 CE64 direct，但 downstream LoRA 对学习率更敏感，`head_lr=1e-5` 明显更稳。
 - original head from scratch 的表现说明“重新训练输出头”是有效对照；它比 CE direct 稳，但在 MASE 上不如 CE64 LoRA。
 - new64 large 的 direct 结果很差，说明更大的 generic pretrain pool 不一定带来更好的目标域迁移；数据池和训练阶段设计仍然关键。
-- CE 路线的主要价值不是全面超过原始 TimesFM，而是验证“回归架构 + 分类损失 + 分箱概率预测”这条路线在 MASE 上能取得有效改进。
+- CE 路线的主要价值不是全面超过原始 TimesFM，而是验证“回归架构 + 分类损失 + 分箱概率预测”这条路线在目标域 LoRA 后有潜力；CE64 虽然不是最好 WQL，但取得了当前最好 MASE。
 
 ## 复现入口
 

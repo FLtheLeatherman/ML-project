@@ -42,7 +42,7 @@
 
 
 
-\title{Two Ways to Combine Numerical and Classification Objectives in Time-Series Foundation Models}
+\title{Bridging the Gap Between Numerical and Categorical Objectives in Time-Series Foundation Models}
 
 
 \author{
@@ -529,23 +529,36 @@ and MASE 1.3968 after downstream LoRA.
 
 This project studies how loss functions and output formulations affect
 pretrained time-series forecasting models.  The Chronos experiments show that
-classification-style training and numerical-distance objectives emphasize
-different forecasting behavior.  The original CE objective remains strongest for
-WQL, while distance-aware objectives such as bin-W1, CRPS-style loss, and
-ordinal CE improve or balance other aspects of the forecast.  This suggests
-that the two objective families are not simply substitutes: categorical
-probability modeling and numerical distance information provide complementary
-signals during fine-tuning.
+distance-aware fine-tuning is a promising way to improve a categorical
+forecasting model, but the distance signal must be expressed in a form that fits
+Chronos's discretized output space.  A naive bin-MSE objective by itself is not
+the main source of improvement, and mixing it with CE changes little; the
+stronger direction is to use losses that operate on the ordered-bin distribution
+more directly.  In this setting, bin-W1 achieves the best MASE, while CRPS-style
+loss and ordinal CE also improve MASE over CE+LoRA and remain close to CE in
+WQL.  These results suggest that Chronos can benefit from numerical geometry
+without abandoning its categorical forecasting interface.
 
 The TimesFM experiments point in the opposite direction and lead to the same
 broader conclusion.  Starting from a numerical forecasting backbone, adding a CE
-head makes a classification-style adaptation feasible, and CE64 with LoRA
-achieves the best MASE among our TimesFM variants.  This result is important
-because the benefit is not limited to probabilistic bin prediction; the
-classification formulation also helps point-to-point forecasting after
-fine-tuning.  In other words, combining the strengths of classification
-objectives and numerical forecasting backbones can expose capabilities that are
-not visible under the original output formulation alone.
+head is not a uniformly stronger replacement for the original head: direct CE
+transfer is weak, and the base model remains strongest in WQL.  However, CE64
+with LoRA substantially improves MASE, showing that the categorical head has
+real potential after target-domain adaptation even though it is not the best
+overall model in the current setting.  In other words, combining categorical
+objectives with numerical forecasting backbones can expose useful behavior that
+is not visible under the original output formulation alone.
+
+The results also show a practical trade-off between probabilistic and point
+forecasting metrics.  CE keeps a strong advantage for WQL because it directly
+optimizes a categorical predictive distribution, while distance-aware losses can
+move the model toward better point forecasts by penalizing how far a wrong bin
+is from the target.  In Chronos, CE+LoRA obtains the best WQL, whereas bin-W1
+obtains the best MASE.  In TimesFM, the original zero-shot model keeps the best
+WQL, while CE64 with LoRA obtains the best MASE among our variants.  Rather than
+identifying one universal objective, these results show that the useful
+objective depends on whether the application values calibrated uncertainty or
+accurate point forecasts more.
 
 Overall, the results support the view that forecasting foundation models should
 not be tied too rigidly to either pure regression or pure classification
